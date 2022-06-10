@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-
+const {developers, manager, engineer, intern } = require('./assets/javascript/classes');
 
 
 const teamRole = [

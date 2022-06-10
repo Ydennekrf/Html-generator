@@ -44,3 +44,5 @@ class intern extends developers{
         return this._school;
     }
 };
+
+module.exports = { developers, manager, engineer, intern };
