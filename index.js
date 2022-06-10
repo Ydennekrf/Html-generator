@@ -152,9 +152,7 @@ function askQuestions () {
         if (data.confirmNewEmployee){
             askQuestions();
         } else {
-            console.log(employee.manager.name);
-            console.log(employee.engineer.github);
-            console.log(employee.intern.ID);
+            console.log(Employee);
             // generateHtml();
         }
 })

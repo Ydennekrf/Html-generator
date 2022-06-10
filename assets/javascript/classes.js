@@ -1,17 +1,17 @@
 class Employee {
-    constructor(name , id, email) {
+    constructor(name,id,email) {
         console.log(name)
         this.name = name;
         this.id = id;
         this.email = email;
     }
-    get name() {
+    getName() {
         return this.name;
     }
-    get id() {
+    getId() {
         return this.id;
     }
-    get email() {
+    getEmail() {
         return this.email;
     }
 }
@@ -21,7 +21,7 @@ class Manager extends Employee{
         super(name, id, email);
         this.office = office;
     }
-    get office() {
+    getOffice() {
         return this.office;
     }
 }
@@ -31,7 +31,7 @@ class Engineer extends Employee{
         super(name, id, email)
         this.github = github;
     }
-    get github() {
+    getGithub() {
         return this.github;
     }
 }
@@ -41,7 +41,7 @@ class Intern extends Employee{
         super(name, id, email)
         this.school = school;
     }
-    get school() {
+    getSchool() {
         return this.school;
     }
 };
