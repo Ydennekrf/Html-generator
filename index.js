@@ -1,12 +1,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const {developers, manager, engineer, intern } = require('./assets/javascript/classes');
+const {Employee, Manager, Engineer, Intern } = require('./assets/javascript/classes');
 
 const managerQuestion = [
+   
     {
         type: 'input',
-        message: 'what is your name?',
-        name: 'name',
+        message: "what is your manager's name?",
+        name: 'managerName',
         validate: nameInput => {
             if(nameInput) {
                 return true;
@@ -19,7 +20,7 @@ const managerQuestion = [
     {
         type: 'input',
         message: 'what is the ID #?',
-        name: 'ID',
+        name: 'managerID',
         validate: IDInput => {
             if(IDInput) {
                 return true;
@@ -32,7 +33,7 @@ const managerQuestion = [
     {
         type: 'input',
         message: 'what is the email?',
-        name: 'email',
+        name: 'managerEmail',
         validate: emailIn => {
             if(emailIn) {
                 return true;
@@ -60,75 +61,120 @@ const managerQuestion = [
 
 const questions = [
     {
+        type: 'confirm',
+        name: 'confirmNewEmployee',
+        message: 'add an employee?',
+        default: true
+    },
+    {
         type: 'input',
         message: 'what is your name?',
-        name: 'name'
+        name: 'name',
+        when: confirm => confirm.confirmNewEmployee,
+        validate: nameIn => {
+            if(nameIn) {
+                return true;
+            } else {
+                console.log('please enter an input.');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         message: 'what is the ID #?',
-        name: 'ID'
+        name: 'id',
+        when: confirm => confirm.confirmNewEmployee,
+        validate: IDin => {
+            if(IDin) {
+                return true;
+            } else {
+                console.log('please enter an input.');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         message: 'what is the email?',
-        name: 'email'
+        name: 'email',
+        when: confirm => confirm.confirmNewEmployee,
+        validate: emailIn => {
+            if(emailIn) {
+                return true;
+            } else {
+                console.log('please enter an input.')
+                return false;
+            }
+        }
+    },
+    {
+        type: 'list',
+        message: 'select the employees role',
+        name: 'role',
+        choices: ['engineer', 'intern'],
+        when: confirm => confirm.confirmNewEmployee,
+        validate: roleIn => {
+            if(roleIn) {
+                return true;
+            } else {
+                console.log('please select an input.')
+                return false;
+            }
+        } 
+    },
+    {
+        type: 'input',
+        message: 'What is the github profile?',
+        name: 'github',
+        when: role => role.role === 'engineer'
+    },
+    {
+        type: 'input',
+        message: 'What school are you from?',
+        name: 'school',
+        when: role => role.role === 'intern'
     }
 ];
 
-// function roleCheck (roleData) {
-//     switch(roleData) {
-//         case 'manager':
-//             questions.next({
-//                 type: 'input',
-//                 message: 'What is the office number?',
-//                 name: 'office'
-//             });
-            
-//         break;
-//         case 'engineer':
-//             questions.next({
-//                 type: 'input',
-//                 message: 'What is the github profile?',
-//                 name: 'github'
-//             });
-//         break;
-//         case 'intern':
-//             questions.next({
-//                 type: 'input',
-//                 message: 'What school are you from?',
-//                 name: 'school'
-//             })
-//     }
-// };
-
-
-
-
 function init() {
-    inquirer.prompt(teamRole)
+    inquirer.prompt(managerQuestion)
     .then((data) => {
-        // console.log(data)
-        let teamRole = data.role;
-        askQuestions(teamRole)
+        addManager(data)
+        askQuestions()
     })
 }
 
-function askQuestions (teamRole) {
+function askQuestions () {
         inquirer.prompt(questions)
         .then((data) => {
-            // roleCheck(roleData)
-            // console.log(data);
-            addDev(teamRole, data)
-        })
+        addDev(data);
+        if (data.confirmNewEmployee){
+            askQuestions();
+        } else {
+            console.log(employee.manager.name);
+            console.log(employee.engineer.github);
+            console.log(employee.intern.ID);
+            // generateHtml();
+        }
+})
     
 };
-function addDev(teamRole, data) {
-    console.log(teamRole);
+function addManager(data) {
     console.log(data)
-    let newDev = data.name
- const member  = new `${teamRole}`(data.name , data.ID , data.email, `${teamRole}`, 'stuff')
- console.log(developers)
+    const manager = new Manager(data.managerName, data.managerID, data.managerEmail, data.office )
+}
+function addDev(data) {
+    console.log(data) 
+    const devRole = data.role
+    console.log(devRole);
+    switch(devRole) {
+        case 'engineer':
+            engineer = new Engineer(data.name, data.id, data.email, data.github)
+        break;
+        case 'intern':
+            intern = new Intern(data.name, data.id, data.email, data.school)
+    }
 }
 
 init();

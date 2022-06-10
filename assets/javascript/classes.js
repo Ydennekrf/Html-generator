@@ -1,48 +1,49 @@
-class developers {
-    constructor(name , ID, email) {
-        this._name = name;
-        this._ID = ID;
-        this._email = email;
+class Employee {
+    constructor(name , id, email) {
+        console.log(name)
+        this.name = name;
+        this.id = id;
+        this.email = email;
     }
     get name() {
-        return this._name;
+        return this.name;
     }
-    get ID() {
-        return this._ID;
+    get id() {
+        return this.id;
     }
     get email() {
-        return this._email;
+        return this.email;
     }
 }
 
-class manager extends developers{
-    constructor(name, ID, email, office) {
-        super(name, ID, email)
-        this._office = office;
+class Manager extends Employee{
+    constructor(name, id, email, office) {
+        super(name, id, email);
+        this.office = office;
     }
     get office() {
-        return this._office;
+        return this.office;
     }
 }
 
-class engineer extends developers{
-    constructor(name, ID, email, github) {
-        super(name, ID, email)
-        this._github = github;
+class Engineer extends Employee{
+    constructor(name, id, email, github) {
+        super(name, id, email)
+        this.github = github;
     }
     get github() {
-        return this._github;
+        return this.github;
     }
 }
 
-class intern extends developers{
-    constructor(name, ID, email, school) {
-        super(name, ID, email)
-        this._school = school;
+class Intern extends Employee{
+    constructor(name, id, email, school) {
+        super(name, id, email)
+        this.school = school;
     }
     get school() {
-        return this._school;
+        return this.school;
     }
 };
 
-module.exports = { developers, manager, engineer, intern };
+module.exports = { Employee, Manager, Engineer, Intern };
