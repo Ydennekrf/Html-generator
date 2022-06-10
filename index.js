@@ -2,18 +2,60 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const {developers, manager, engineer, intern } = require('./assets/javascript/classes');
 
-
-const teamRole = [
+const managerQuestion = [
     {
-        type: 'list',
-        message: 'What is your role?',
-        name: 'role',
-        choices: [
-            'manager',
-            'engineer',
-            'intern'
-        ]
-    }
+        type: 'input',
+        message: 'what is your name?',
+        name: 'name',
+        validate: nameInput => {
+            if(nameInput) {
+                return true;
+            } else {
+                console.log('Please enter your name.')
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: 'what is the ID #?',
+        name: 'ID',
+        validate: IDInput => {
+            if(IDInput) {
+                return true;
+            } else {
+                console.log('an ID number is required.');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: 'what is the email?',
+        name: 'email',
+        validate: emailIn => {
+            if(emailIn) {
+                return true;
+            } else {
+                console.log('please enter an email address.');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: 'What is your office number?',
+        name: 'office',
+        validate: officeIn => {
+            if(officeIn) {
+                return true;
+            } else {
+                console.log('please enter an office number.');
+                return false;
+            }
+        }
+    },
+
 ];
 
 const questions = [
