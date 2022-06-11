@@ -2,6 +2,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const {Employee, Manager, Engineer, Intern } = require('./assets/javascript/classes');
 
+let employeeArr = [];
 const managerQuestion = [
    
     {
@@ -152,26 +153,30 @@ function askQuestions () {
         if (data.confirmNewEmployee){
             askQuestions();
         } else {
-            console.log(Employee);
             // generateHtml();
         }
 })
     
 };
 function addManager(data) {
-    console.log(data)
-    const manager = new Manager(data.managerName, data.managerID, data.managerEmail, data.office )
+    const manager = new Manager(data.managerName, data.managerID, data.managerEmail, data.office );
+    employeeArr.push(manager);
 }
-function addDev(data) {
-    console.log(data) 
+function addDev(data) { 
     const devRole = data.role
-    console.log(devRole);
     switch(devRole) {
         case 'engineer':
-            engineer = new Engineer(data.name, data.id, data.email, data.github)
+            engineer = new Engineer(data.name, data.id, data.email, data.github);
+            employeeArr.push(engineer);
+            console.log(employeeArr);
         break;
         case 'intern':
-            intern = new Intern(data.name, data.id, data.email, data.school)
+            intern = new Intern(data.name, data.id, data.email, data.school);
+            employeeArr.push(intern);
+            console.log(employeeArr)
+        break;
+        default:
+            console.log('Finished creating team.');
     }
 }
 
