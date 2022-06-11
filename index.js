@@ -169,12 +169,12 @@ function addDev(data) {
         case 'engineer':
             engineer = new Engineer(data.name, data.id, data.email,data.role, data.github);
             employeeArr.push(engineer);
-            console.log(employeeArr);
+          
         break;
         case 'intern':
             intern = new Intern(data.name, data.id, data.email, data.role, data.school);
             employeeArr.push(intern);
-            console.log(employeeArr)
+            
         break;
         default:
             console.log('Finished creating team.');
