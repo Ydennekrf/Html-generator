@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const {Employee, Manager, Engineer, Intern } = require('./assets/javascript/classes');
-const { generateCard } = require('./assets/javascript/generateHtml');
+const { generateCard, generateHtml } = require('./assets/javascript/generateHtml');
 
 let employeeArr = [];
 const managerQuestion = [
@@ -160,19 +160,19 @@ function askQuestions () {
     
 };
 function addManager(data) {
-    const manager = new Manager(data.managerName, data.managerID, data.managerEmail, data.office );
+    const manager = new Manager(data.managerName, data.managerID, data.managerEmail, 'manager' , data.office );
     employeeArr.push(manager);
 }
 function addDev(data) { 
     const devRole = data.role
     switch(devRole) {
         case 'engineer':
-            engineer = new Engineer(data.name, data.id, data.email, data.github);
+            engineer = new Engineer(data.name, data.id, data.email,data.role, data.github);
             employeeArr.push(engineer);
             console.log(employeeArr);
         break;
         case 'intern':
-            intern = new Intern(data.name, data.id, data.email, data.school);
+            intern = new Intern(data.name, data.id, data.email, data.role, data.school);
             employeeArr.push(intern);
             console.log(employeeArr)
         break;
@@ -181,12 +181,10 @@ function addDev(data) {
     }
 };
 function writeHtml() {
-    // let fileName = `team-${employeeArr[0].name.toLowerCase().split(' ').join('')}.html`;
-    generateCard(employeeArr);
-    for(i=0; i<employeeArr.length;i++){
-        console.log(employeeArr[i]);
-    }
-
-}
+    let cardArr = [];
+    let fileName = `team-${employeeArr[0].name.toLowerCase().split(' ').join('')}.html`;
+    generateCard(employeeArr, cardArr);
+    fs.writeFile(`./genHTML/${fileName}`, generateHtml(employeeArr, cardArr), (err) => err ? console.log(err) : console.log('Success!'));
+};
 
 init();
