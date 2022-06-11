@@ -1,6 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const {Employee, Manager, Engineer, Intern } = require('./assets/javascript/classes');
+const { generateCard } = require('./assets/javascript/generateHtml');
 
 let employeeArr = [];
 const managerQuestion = [
@@ -153,7 +154,7 @@ function askQuestions () {
         if (data.confirmNewEmployee){
             askQuestions();
         } else {
-            // generateHtml();
+            writeHtml();
         }
 })
     
@@ -178,6 +179,14 @@ function addDev(data) {
         default:
             console.log('Finished creating team.');
     }
+};
+function writeHtml() {
+    // let fileName = `team-${employeeArr[0].name.toLowerCase().split(' ').join('')}.html`;
+    generateCard(employeeArr);
+    for(i=0; i<employeeArr.length;i++){
+        console.log(employeeArr[i]);
+    }
+
 }
 
 init();
