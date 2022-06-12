@@ -1,46 +1,46 @@
-const Engineer = require ("../assets/javascript/classes");
+const Intern = require ("../assets/javascript/classes");
 
-test( 'creating an engineer object within employee object', () => {
-    const engineer = new Engineer("Fraser", 10, 'email@email.com', 'engineer', 'ydennekrf');
+test( 'creating an intern object within employee object', () => {
+    const intern = new Intern("Fraser", 10, 'email@email.com', 'intern', 'UofT');
 
-    expect( typeof( engineer)).toBe( "object" );
-    expect( engineer.name ).toBe( String );
-    expect( engineer.id ).toBe( Number );
-    expect( engineer.email ).toBe( String );
-    expect( engineer.github ).toBe( String );
-    expect( engineer.role ).toBe( String );
+    expect( typeof( intern )).toBe( "object" );
+    expect( intern.name ).toBe( String );
+    expect( intern.id ).toBe( Number );
+    expect( intern.email ).toBe( String );
+    expect( intern.github ).toBe( String );
+    expect( intern.role ).toBe( String );
 });
 
 test( "Test to see if getName works.", () => {
     const testName = "Fraser";
-    const engineer = new Engineer( testName );
-    expect (engineer.getName()).toBe( testName );
+    const intern = new Intern( testName );
+    expect (intern.getName()).toBe( testName );
 });
 
 test( "test to see if getId works.", () => {
     const testId = 10;
-    const engineer = new Engineer( "Fraser", testId);
+    const intern = new Intern( "Fraser", testId);
 
-    expect (engineer.getId()).toBe( testId )     
+    expect (intern.getId()).toBe( testId )     
 });
 
 test( "test to see if getEmail works.", () => {
     const testEmail = 'ydennekrf@hotmail.com'
-    const engineer = new Engineer( 'Fraser', 10, testEmail);
+    const intern = new Intern( 'Fraser', 10, testEmail);
 
-    expect( engineer.getEmail().toBe( testEmail ));
+    expect( intern.getEmail().toBe( testEmail ));
 });
 
 test(" check to see if getRole returns engineer as role", () => {
-    const testRole = 'engineer';
-    const engineer = new Engineer( 'Fraser', 10, 'ydennekrf@hotmail.com', testRole);
+    const testRole = 'intern';
+    const intern = new Intern( 'Fraser', 10, 'ydennekrf@hotmail.com', testRole);
 
-    expect( engineer.getRole()).toBe( testRole );
+    expect( intern.getRole()).toBe( testRole );
 });
 
-test(" check to see if getGithub works", () => {
-    const testGit = 'ydennekrf';
-    const engineer = new Engineer('Fraser', 10, 'ydennekrf@hotmail.com', 'engineer', testGit);
+test(" check to see if getSchool works", () => {
+    const testSchool = 'UofT';
+    const intern = new Intern('Fraser', 10, 'ydennekrf@hotmail.com', 'intern', testSchool);
 
-    expect( engineer.getGithub()).toBe( testGit );
+    expect( intern.getSchool()).toBe( testSchool );
 });
