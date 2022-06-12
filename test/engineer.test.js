@@ -1,14 +1,14 @@
-const Engineer = require ("../assets/javascript/classes");
+const { Engineer } = require ("../assets/javascript/classes");
 
 test( 'creating an engineer object within employee object', () => {
-    const engineer = new Engineer("Fraser", 10, 'email@email.com', 'engineer', 'ydennekrf');
+    const engineer = new Engineer('Fraser', 10, 'email@email.com', 'engineer', 'ydennekrf');
 
     expect( typeof( engineer)).toBe( "object" );
-    expect( engineer.name ).toBe( String );
-    expect( engineer.id ).toBe( Number );
-    expect( engineer.email ).toBe( String );
-    expect( engineer.github ).toBe( String );
-    expect( engineer.role ).toBe( String );
+    expect( typeof engineer.name ).toBe( 'string' );
+    expect( typeof engineer.id ).toBe( 'number' );
+    expect( typeof engineer.email ).toBe( 'string' );
+    expect( typeof engineer.github ).toBe( 'string' );
+    expect( typeof engineer.role ).toBe( 'string' );
 });
 
 test( "Test to see if getName works.", () => {
@@ -28,7 +28,7 @@ test( "test to see if getEmail works.", () => {
     const testEmail = 'ydennekrf@hotmail.com'
     const engineer = new Engineer( 'Fraser', 10, testEmail);
 
-    expect( engineer.getEmail().toBe( testEmail ));
+    expect( engineer.getEmail()).toBe( testEmail );
 });
 
 test(" check to see if getRole returns engineer as role", () => {

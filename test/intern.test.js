@@ -1,14 +1,14 @@
-const Intern = require ("../assets/javascript/classes");
+const {Intern} = require ("../assets/javascript/classes");
 
 test( 'creating an intern object within employee object', () => {
-    const intern = new Intern("Fraser", 10, 'email@email.com', 'intern', 'UofT');
+    const intern = new Intern('Fraser', 10, 'email@email.com', 'intern', 'UofT');
 
-    expect( typeof( intern )).toBe( "object" );
-    expect( intern.name ).toBe( String );
-    expect( intern.id ).toBe( Number );
-    expect( intern.email ).toBe( String );
-    expect( intern.github ).toBe( String );
-    expect( intern.role ).toBe( String );
+    expect( typeof intern ).toBe( "object" );
+    expect( typeof intern.name ).toBe( 'string' );
+    expect( typeof intern.id ).toBe( 'number' );
+    expect( typeof intern.email ).toBe( 'string' );
+    expect( typeof intern.school ).toBe( 'string' );
+    expect( typeof intern.role ).toBe( 'string' );
 });
 
 test( "Test to see if getName works.", () => {
@@ -28,7 +28,7 @@ test( "test to see if getEmail works.", () => {
     const testEmail = 'ydennekrf@hotmail.com'
     const intern = new Intern( 'Fraser', 10, testEmail);
 
-    expect( intern.getEmail().toBe( testEmail ));
+    expect( intern.getEmail()).toBe( testEmail );
 });
 
 test(" check to see if getRole returns engineer as role", () => {
