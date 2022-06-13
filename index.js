@@ -1,15 +1,18 @@
+//importing in all the files and functions required in index.js
 const fs = require('fs');
 const inquirer = require('inquirer');
 const {Employee, Manager, Engineer, Intern } = require('./assets/javascript/classes');
 const { generateCard, generateHtml } = require('./assets/javascript/generateHtml');
-
+// my lone global variable
 let employeeArr = [];
+// array of questions run first to get data on the team manager.
 const managerQuestion = [
    
     {
         type: 'input',
         message: "what is your manager's name?",
         name: 'managerName',
+        // validates there is an input value before you move on to the next question.
         validate: nameInput => {
             if(nameInput) {
                 return true;
@@ -60,7 +63,7 @@ const managerQuestion = [
     },
 
 ];
-
+// array of questions used for every non managment employee.
 const questions = [
     {
         type: 'confirm',
@@ -72,6 +75,7 @@ const questions = [
         type: 'input',
         message: 'what is your name?',
         name: 'name',
+        // used to skip questions when you select no for creating a new team member.
         when: confirm => confirm.confirmNewEmployee,
         validate: nameIn => {
             if(nameIn) {
@@ -129,6 +133,8 @@ const questions = [
         type: 'input',
         message: 'What is the github profile?',
         name: 'github',
+        // uses data from the question about which role you are
+        //if an engineer was picked then this question will be asked.
         when: role => role.role === 'engineer'
     },
     {
@@ -138,7 +144,9 @@ const questions = [
         when: role => role.role === 'intern'
     }
 ];
-
+// the init function is run on initialization of the file.
+// it begins with the manager questions then takes that data and creates the manager instance in the employee class
+// then the function asked questions is run.
 function init() {
     inquirer.prompt(managerQuestion)
     .then((data) => {
@@ -146,7 +154,7 @@ function init() {
         askQuestions()
     })
 }
-
+// this handles the creation of each instance of a new employee and when no more team members are desired it directs the code to write the html document based on the inpout data.
 function askQuestions () {
         inquirer.prompt(questions)
         .then((data) => {
@@ -159,10 +167,14 @@ function askQuestions () {
 })
     
 };
+// adds and instance of the manager class
+// moves that data into and employee array for future use.
 function addManager(data) {
     const manager = new Manager(data.managerName, data.managerID, data.managerEmail, 'manager' , data.office );
     employeeArr.push(manager);
-}
+};
+// add and instance of either the engineer or intern classes
+// will default when no is selected for creating a new team member.
 function addDev(data) { 
     const devRole = data.role
     switch(devRole) {
@@ -180,6 +192,7 @@ function addDev(data) {
             console.log('Finished creating team.');
     }
 };
+// uses the functions within generateHtml.js to write the new html document with the given data.
 function writeHtml() {
     let cardArr = [];
     let fileName = `team-${employeeArr[0].name.toLowerCase().split(' ').join('')}.html`;

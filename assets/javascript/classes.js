@@ -1,3 +1,4 @@
+// the main employee class
 class Employee {
     constructor(name,id,email) {
         this.name = name;
@@ -18,7 +19,7 @@ class Employee {
         return this.role;
     }
 }
-
+// the manager sub class
 class Manager extends Employee{
     constructor(name, id, email, role, office) {
         super(name, id, email);
@@ -32,7 +33,7 @@ class Manager extends Employee{
         return this.role;
      }
 }
-
+// the engineer sub class
 class Engineer extends Employee{
     constructor(name, id, email, role, github) {
         super(name, id, email)
@@ -46,7 +47,7 @@ class Engineer extends Employee{
         return this.role;
      };
 }
-
+// the intern sub class
 class Intern extends Employee{
     constructor(name, id, email, role, school) {
         super(name, id, email)
@@ -60,5 +61,5 @@ class Intern extends Employee{
         return this.role;
      };
 };
-
+// exporting the classes out to other documents.
 module.exports = { Employee, Manager, Engineer, Intern };

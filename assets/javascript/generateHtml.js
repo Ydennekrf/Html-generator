@@ -1,3 +1,5 @@
+// function used to select which class the employee belongs and then use the corresponding format.
+// loops through to be sure every employee is saved to the card array
 function generateCard (employeeArr, cardArr) {
 
 for(i=0; i<employeeArr.length;i++){
@@ -50,7 +52,7 @@ for(i=0; i<employeeArr.length;i++){
     }
 }
 }
-
+// function used to create the content of the html document and accempts the contents of the card array to add to it.
 function generateHtml (employeeArr, cardArr) {
     return`<!DOCTYPE html>
     <html lang="en">

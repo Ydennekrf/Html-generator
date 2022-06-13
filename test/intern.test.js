@@ -1,5 +1,6 @@
+// imports the manager class into the document
 const {Intern} = require ("../assets/javascript/classes");
-
+// this file runs jest unit tests for the intern class
 test( 'creating an intern object within employee object', () => {
     const intern = new Intern('Fraser', 10, 'email@email.com', 'intern', 'UofT');
 
